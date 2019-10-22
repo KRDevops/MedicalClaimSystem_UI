@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    line-height: 1.4 !important;
+}
+
+.text-orange {
+    color: #ff6803;
+}
+
+.bg-orange {
+    background: #ff6803;
+}
+
+.btn-orange {
+    background: #ff6803;
+    border: #ff6803;
+}
+
+.btn-primary, .btn-primary.disabled, .btn-primary:disabled, .btn-primary:hover, .btn-primary:active {
+    background-color: #2c3868;
+    border-color: #2c3868;
+}
+
+.btn-gray {
+    background: #EEE;
+}
+
+.line-height {
+    line-height: 1.4 !important;
+}
+
+.border-orange {
+    border-color: #ff6803;
+}
+
+.required {
+    color: #ff6803;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+a, li {
+    outline: none;
+}
+
+.btn {
+    border-radius: 0 !important;
+}
+
+header {
+    .btn-group-sm > .btn, .btn-sm {
+        line-height: 1 !important;
+    }
+}
+
+.form-control {
+    border-width: 2px;
+    border-radius: 0;
+    height: calc(1.5em + .75em + 5px);
+}
+
+// form styles
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    // border-color: #ced4da;
+    background-image: none;
+}
+
+
+// primeng
+
+.ui-steps .ui-steps-item {
+    width: 50%;
+}
+
+.ui-steps.steps-custom {
+    margin-bottom: 30px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-menuitem-link {
+    height: 10px;
+    padding: 0 1em;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-number {
+    background-color: #0081c2;
+    color: #FFFFFF;
+    display: inline-block;
+    width: 36px;
+    border-radius: 50%;
+    margin-top: -14px;
+    margin-bottom: 10px;
+}
+
+.ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+    color: #555555;
+}
+
+.ui-steps .ui-steps-item .ui-steps-number {
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+}
+.ui-steps .ui-steps-item .ui-steps-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #6c757d !important;
+}
+
+.ui-steps .ui-steps-item.ui-state-highlight .ui-steps-number {
+    border-color: orange !important;
+    background: #ff6803 !important;
+    color: #ffffff !important;
+}
+
+.ui-state-disabled, body .ui-widget:disabled {
+    opacity: 1 !important;
+    .ui-steps-title {
+        opacity: 0.5;
+    }
+}
+
+.ui-steps .ui-steps-item.ui-state-highlight .ui-steps-title {
+    font-weight: 400 !important;
+}
+
+.ui-tabview.ui-tabview-top .ui-tabview-nav li {
+    // border: 1px solid #c8c8c8 !important;
+    // background-color: #f4f4f4 !important;
+    &.ui-state-active {
+        background-color: #ff6803 !important;
+        border: 1px solid #ff6803 !important;
+        transition: background-color 0.2s;
+    }
+}
+
+.ui-tabview .ui-tabview-nav li a {
+    padding: 13px 30px !important;
+}
+
+.ui-tabview .ui-tabview-panels {
+    padding: 1.5em !important;
+}

@@ -1,0 +1,24 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-orange">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">
+                <div *ngIf="logo">
+                    <img [src]="logo" [alt]="alt" [width]="width" [height]="height">
+                </div>
+                <div class="text-white" *ngIf="!login && appName">{{appName | titlecase}}</div>
+            </a>
+            <div class="ml-auto">
+                <div *ngIf="user">
+                    <a class="nav-link btn btn-light btn-sm text-orange cursor-pointer" (click)="onLogout()">Logout</a>
+                </div>
+                <div *ngIf="!user">
+                    <a routerLink="/"
+                        class="nav-link d-inline-block btn btn-light btn-sm text-orange cursor-pointer mr-2">Claim
+                        Policy</a>
+                    <a routerLink="/login"
+                        class="nav-link d-inline-block btn btn-light btn-sm text-orange cursor-pointer">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

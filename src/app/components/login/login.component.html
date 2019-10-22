@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-12 col-md-7 border p-5">
+        <h3 class="text-orange mb-4 line-height">LOGIN</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div class="form-group">
+                <label class="text-muted" for="emailId">EMAIL ID <span class="required">*</span></label>
+                <input id="emailId" id="emailId" type="email" class="form-control" formControlName="emailId"
+                    [class.is-invalid]="f.emailId.invalid && (submitted || (f.emailId.dirty || f.emailId.touched))">
+                <div *ngIf="f.emailId.invalid && (submitted || (f.emailId.dirty || f.emailId.touched))"
+                    class="invalid-feedback">
+                    <span *ngIf="f.emailId.errors.required">Email Id is required</span>
+                    <span *ngIf="f.emailId.errors.email">Email Id is not valid</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="text-muted" for="password">PASSWORD <span class="required">*</span></label>
+                <input type="password" id="password" class="form-control" formControlName="password"
+                    [class.is-invalid]="f.password.invalid && (submitted || (f.password.dirty || f.password.touched))">
+                <div *ngIf="f.password.invalid && (submitted || (f.password.dirty || f.password.touched))"
+                    class="invalid-feedback">
+                    <span *ngIf="f.password.errors.required">Password is required</span>
+                </div>
+            </div>
+            <app-alert *ngIf="loginError" type="danger" [message]="loginErrorMessage"></app-alert>
+            <div class="form-group mt-4">
+                <input type="submit" class="btn btn-orange text-white btn-lg mr-2" value="Login">
+            </div>
+        </form>
+    </div>
+</div>

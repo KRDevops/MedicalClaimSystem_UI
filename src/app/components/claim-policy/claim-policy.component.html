@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-12 col-md-8 offset-md-2">
+        <p-toast [style]="{marginTop: '80px'}"></p-toast>
+        <h3 class="text-orange text-center pt-5 pb-3">Claim Your Policy</h3>
+        <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="true"></p-steps>
+
+        <div class="row mt-5">
+            <div class="col-12 col-md-8 offset-md-2 text-center">
+                <div *ngIf="validatePolicy">
+                    <form [formGroup]="validatePolicyForm" (ngSubmit)="onValidatePolicy()">
+                        <div class="form-group">
+                            <label class="text-muted" for="policyNumber">Policy Number <span
+                                    class="required">*</span></label>
+                            <input type="text" id="policyNumber" class="form-control" formControlName="policyNumber"
+                                [class.is-invalid]="v.policyNumber.invalid && (validatePolicySubmitted || (v.policyNumber.dirty || v.policyNumber.touched))">
+                            <div *ngIf="v.policyNumber.invalid && (validatePolicySubmitted || (v.policyNumber.dirty || v.policyNumber.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="v.policyNumber.errors.required">Policy number is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 text-center">
+                            <input type="submit" class="btn btn-orange text-white btn-lg mr-2" value="Search">
+                        </div>
+                    </form>
+                </div>
+
+                <div *ngIf="claimPolicy">
+                    <form [formGroup]="claimPolicyForm" (ngSubmit)="onClaimPolicy()">
+
+                        <div class="form-group">
+                            <label class="text-muted" for="policyName">Policy Name</label>
+                            <input type="text" id="policyName" class="form-control" [value]="validatedPolicy.policyName"
+                                disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="availableAmount">Available Amount</label>
+                            <input type="text" id="availableAmount" class="form-control"
+                                [value]="validatedPolicy.availableAmount" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="entitledAmount">Entitled Amount</label>
+                            <input type="text" id="entitledAmount" class="form-control"
+                                [value]="validatedPolicy.entitledAmount" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="text-muted" for="diagnosis">Diagnosis <span class="required">*</span></label>
+                            <input type="text" id="diagnosis" class="form-control" formControlName="diagnosis"
+                                [class.is-invalid]="f.diagnosis.invalid && (claimPolicySubmitted || (f.diagnosis.dirty || f.diagnosis.touched))">
+                            <div *ngIf="f.diagnosis.invalid && (claimPolicySubmitted || (f.diagnosis.dirty || f.diagnosis.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.diagnosis.errors.required">Diagnosis detail is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="hospitalId">Hospital Id <span
+                                    class="required">*</span></label>
+                            <input type="text" id="hospitalId" class="form-control" formControlName="hospitalId"
+                                [class.is-invalid]="f.hospitalId.invalid && (claimPolicySubmitted || (f.hospitalId.dirty || f.hospitalId.touched))">
+                            <div *ngIf="f.hospitalId.invalid && (claimPolicySubmitted || (f.hospitalId.dirty || f.hospitalId.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.hospitalId.errors.required">Hospital name is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="documents">Documents <span class="required">*</span></label>
+                            <input type="file" id="documents" class="form-control" (change)="onUpload($event)"
+                                [class.is-invalid]="f.documents.invalid && (claimPolicySubmitted || (f.documents.dirty || f.documents.touched))">
+                            <div *ngIf="f.documents.invalid && (claimPolicySubmitted || (f.documents.dirty || f.documents.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.documents.errors.required">Document is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="claimAmount">Claim Amount <span
+                                    class="required">*</span></label>
+                            <input type="text" id="claimAmount" class="form-control" formControlName="claimAmount"
+                                [class.is-invalid]="f.claimAmount.invalid && (claimPolicySubmitted || (f.claimAmount.dirty || f.claimAmount.touched))">
+                            <div *ngIf="f.claimAmount.invalid && (claimPolicySubmitted || (f.claimAmount.dirty || f.claimAmount.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.claimAmount.errors.required">Claim Amount is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="natureOfAilment">Nature Of Ailment <span
+                                    class="required">*</span></label>
+                            <select id="natureOfAilment" class="form-control" formControlName="natureOfAilment"
+                                [class.is-invalid]="f.natureOfAilment.invalid && (claimPolicySubmitted || (f.natureOfAilment.dirty || f.natureOfAilment.touched))">
+                                <option value="">- Select -</option>
+                                <option value="chronic">Chronic</option>
+                                <option value="minor">Minor</option>
+                            </select>
+                            <div *ngIf="f.natureOfAilment.invalid && (claimPolicySubmitted || (f.natureOfAilment.dirty || f.natureOfAilment.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.natureOfAilment.errors.required">Nature Of Ailment is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="admissionDate">Admission Date <span
+                                    class="required">*</span></label>
+                            <input type="date" id="admissionDate" class="form-control" formControlName="admissionDate"
+                                [class.is-invalid]="f.admissionDate.invalid && (claimPolicySubmitted || (f.admissionDate.dirty || f.admissionDate.touched))">
+                            <div *ngIf="f.admissionDate.invalid && (claimPolicySubmitted || (f.admissionDate.dirty || f.admissionDate.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.admissionDate.errors.required">admission date is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-muted" for="dischargeDate">Discharge Date <span
+                                    class="required">*</span></label>
+                            <input type="date" id="dischargeDate" class="form-control" formControlName="dischargeDate"
+                                [class.is-invalid]="f.dischargeDate.invalid && (claimPolicySubmitted || (f.dischargeDate.dirty || f.dischargeDate.touched))">
+                            <div *ngIf="f.dischargeDate.invalid && (claimPolicySubmitted || (f.dischargeDate.dirty || f.dischargeDate.touched))"
+                                class="invalid-feedback">
+                                <span *ngIf="f.dischargeDate.errors.required">Discharge date is required</span>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4">
+                            <input type="submit" class="btn btn-orange text-white btn-lg mr-2" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
